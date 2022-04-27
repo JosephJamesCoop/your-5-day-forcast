@@ -54,8 +54,29 @@ function apiRender() {
             console.log("data.daily[0].day", data.daily);
             var day = String(new Date ( data.daily[0].dt * 1000));
             var today = day.slice(0,10)
-            // var singleDay = document.createElement("h3")
-            // .innerHTML(`${name}, ${state}`);
+            var temp1 = data.current.temp;
+            var wind2 = data.current.wind_speed;
+            var hum = data.current.humidity;
+            var uvi = data.current.uvi;
+            var singleDay = document.createElement("h2").innerHTML = `${name} , ${state}` ;
+            var bk1 = document.createElement("br")
+            var bk2 = document.createElement("br")
+            var bk3 = document.createElement("br")
+            var bk4 = document.createElement("br")
+            var bk5 = document.createElement("br")
+            var bk6 = document.createElement("br")
+            var singleDate = document.createElement("h3").innerHTML = `${today}` ;
+            var twhu = document.createElement("ul");
+            var temp = document.createElement("h3").innerHTML = `Temp: ${temp1} °F`;
+            var wind = document.createElement("h3").innerHTML = `Wind: ${wind2} MPH`;
+            var humidity = document.createElement("h3").innerHTML = `Humidity:  ${hum}%`;
+            var uvIndex = document.createElement("h3").innerHTML = `UV Index: ${uvi}`;
+            currentWeather.append(singleDay, bk1, singleDate, bk2, twhu, temp, bk3, wind, bk4, humidity, bk5, uvIndex);
+
+
+
+          console.log("single", singleDay)
+            // var temp = doc
           console.log("3", data.current.temp);
            console.log("2", data.current.wind_speed);
            console.log("1", data.current.humidity);
