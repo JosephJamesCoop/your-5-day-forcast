@@ -47,7 +47,7 @@ function apiRender(cityName) {
     info.json().then(function (data) {
       var clearSearch = document.getElementById("cityInputed");
       clearSearch.value = "";
-      if (data.length === 0) {
+      if (data.length === 0 || data.message === "Nothing to geocode") {
         alert("City does not exist, please check the spelling and try again");
       } else {
         // add cityName to local storage
