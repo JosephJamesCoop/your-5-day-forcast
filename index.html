@@ -1,25 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+    />
     <link rel="stylesheet" href="./assets/css/style.css" />
-  <title>Your 5 Day Forcast</title>
-</head>
+    <title>Your 5 Day Forcast</title>
+  </head>
 
-<body>
-  <header class="hero">
-    <h1>Your 5 Day Forcast</h1>
+  <body>
 
-  </header>
+    <main class="row">
+      <div class="col-3 marginLeft">
+        <h4>Search for a City</h4>
+        <div id="searchSection"></div>
+        <div id="cities"></div>
+      </div>
 
+      <div class="text-center mt-3 col-6">
+        <h1>Your 5 Day Forcast</h1>
+          <div id="currentWeather" class=" containter"></div>
+          <div id="fiveDayHeader" class="bg-dark text-white fiveDay"></div>
+          <div id="fiveDay" class="containter"></div>
 
-  <main>
-
-  </main>
-  <script src="./assets/js/script.js"></script>
-</body>
-
+      </div>
+    </main>
+    <script src="./assets/js/script.js"></script>
+  </body>
 </html>
