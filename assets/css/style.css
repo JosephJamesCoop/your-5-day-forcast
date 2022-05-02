@@ -1,5 +1,14 @@
+:root {
+  background-color: gray;
+}
+
+main {
+  background-color: gray;
+}
+
 .marginLeft {
   margin-left: 5%;
+  margin-top: 5%;
 }
 .margin2 {
   margin: 25%;
@@ -14,11 +23,22 @@
 }
 
 .styling {
-list-style: none;
-margin-left: -10%;
+  list-style: none;
+  margin-left: -10%;
 }
 .card {
   border: 5px;
   border-color: black;
   margin-bottom: 2px;
+}
+
+.fiveDay {
+  font-size: xx-large;
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.title1 {
+  font-size: x-large;
+  font-weight: 600;
 }

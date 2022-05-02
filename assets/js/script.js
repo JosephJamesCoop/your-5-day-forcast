@@ -2,12 +2,11 @@ apiKey = "6eee33918b42ca96a6dbde84a0ecef24";
 
 var searchSection = document.getElementById("searchSection");
 var currentWeather = document.getElementById("currentWeather");
+var fiveDayHeader = document.getElementById("fiveDayHeader");
 var fiveDay = document.getElementById("fiveDay");
 var cities123 = document.getElementById("cities");
 
 function searchBtn() {
-  var title = (document.createElement("h2").innerHTML = "Search for a City");
-  searchSection.append(title);
   var form = document.createElement("form");
   var cityInput = document.createElement("input");
   cityInput.setAttribute("type", "text");
@@ -51,12 +50,12 @@ function apiRender(cityName) {
         alert("City does not exist, please check the spelling and try again");
       } else {
         // add cityName to local storage
-        var newCity = document
-          .getElementById("cityInputed")
-          .value.toUpperCase();
+        var newCity = data[0].name;
         searchedCities = JSON.parse(localStorage.getItem("cities")) || [];
         searchedCities.push(newCity);
+        console.log("newcity", data[0].name)
         let citySort = [...new Set(searchedCities)];
+        console.log("citysort", citySort);
         localStorage.setItem("cities", JSON.stringify(citySort));
 
         var lat = data[0].lat;
@@ -78,6 +77,10 @@ function apiRender(cityName) {
               console.log("data.lsdfsdfength", data.length);
               console.log("data.daily[0].day", data.daily);
               var day = String(new Date(data.daily[0].dt * 1000));
+              var iconLink1 =
+                "https://openweathermap.org/img/w/" +
+                data.daily[0].weather[0].icon +
+                ".png";
               var today = day.slice(0, 10);
               var temp1 = data.current.temp;
               var wind2 = data.current.wind_speed;
@@ -88,23 +91,24 @@ function apiRender(cityName) {
               ).innerHTML = `${name} , ${state}`);
               var bk1 = document.createElement("br");
               var bk2 = document.createElement("br");
-              var bk3 = document.createElement("br");
-              var bk4 = document.createElement("br");
-              var bk5 = document.createElement("br");
+
               var bk6 = document.createElement("br");
+              var imgIcon1 = document.createElement("img");
+              imgIcon1.src = iconLink1;
+              imgIcon1.className = "sizing text-center";
               var singleDate = (document.createElement(
                 "a"
               ).innerHTML = `${today}`);
               var twhu = document.createElement("ul");
               var temp = (document.createElement(
                 "a"
-              ).innerHTML = `Temp: ${temp1} °F`);
+              ).innerHTML = `Temp: ${temp1} °F, `);
               var wind = (document.createElement(
                 "a"
-              ).innerHTML = `Wind: ${wind2} MPH`);
+              ).innerHTML = `Wind: ${wind2} MPH, `);
               var humidity = (document.createElement(
                 "a"
-              ).innerHTML = `Humidity:  ${hum}%`);
+              ).innerHTML = `Humidity:  ${hum}%, `);
               var uvIndex = (document.createElement(
                 "a"
               ).innerHTML = `UV Index: ${uvi}`);
@@ -113,17 +117,18 @@ function apiRender(cityName) {
                 bk1,
                 singleDate,
                 bk2,
-                twhu,
+                imgIcon1,
+                bk6,
                 temp,
-                bk3,
+
                 wind,
-                bk4,
+
                 humidity,
-                bk5,
-                uvIndex
+
+                uvIndex,
+                twhu
               );
-              var fiveDayHeader = (document.createElement("div").innerHTML =
-                "The Next 5 Days");
+              fiveDayHeader.innerHTML = "The Next 5 Days";
               fiveDay.append(fiveDayHeader);
               for (let i = 1; i < 6; i++) {
                 var day5 = String(new Date(data.daily[i].dt * 1000));
@@ -170,13 +175,13 @@ function apiRender(cityName) {
 }
 
 function saveCity() {
-  singleCity = JSON.parse(localStorage.getItem("cities")) || [];
+  singleCity = JSON.parse(localStorage.getItem("cities"));
   cities123.innerHTML = "";
   var listItems = document.createElement("ul");
   for (var i = 0; i < singleCity.length; i++) {
     var brk = document.createElement("br");
     var listItem = document.createElement("li");
-    listItem.className= "styling"
+    listItem.className = "styling";
     var listItem1 = document.createElement("button");
     listItem1.innerHTML = singleCity[i];
     listItem.append(brk, listItem1);
