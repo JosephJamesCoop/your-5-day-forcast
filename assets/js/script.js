@@ -93,20 +93,20 @@ function apiRender(cityName) {
               var bk5 = document.createElement("br");
               var bk6 = document.createElement("br");
               var singleDate = (document.createElement(
-                "h3"
+                "a"
               ).innerHTML = `${today}`);
               var twhu = document.createElement("ul");
               var temp = (document.createElement(
-                "h3"
+                "a"
               ).innerHTML = `Temp: ${temp1} °F`);
               var wind = (document.createElement(
-                "h3"
+                "a"
               ).innerHTML = `Wind: ${wind2} MPH`);
               var humidity = (document.createElement(
-                "h3"
+                "a"
               ).innerHTML = `Humidity:  ${hum}%`);
               var uvIndex = (document.createElement(
-                "h3"
+                "a"
               ).innerHTML = `UV Index: ${uvi}`);
               currentWeather.append(
                 singleDay,
@@ -122,44 +122,44 @@ function apiRender(cityName) {
                 bk5,
                 uvIndex
               );
-              var fiveDayHeader = document.createElement("div").innerHTML = "The Next 5 Days";
-              fiveDay.append(fiveDayHeader)
+              var fiveDayHeader = (document.createElement("div").innerHTML =
+                "The Next 5 Days");
+              fiveDay.append(fiveDayHeader);
               for (let i = 1; i < 6; i++) {
                 var day5 = String(new Date(data.daily[i].dt * 1000));
                 var today5 = day5.slice(0, 10);
+                console.log("needed info", data.daily[1]);
+                var iconLink =
+                  "https://openweathermap.org/img/w/" +
+                  data.daily[i].weather[0].icon +
+                  ".png";
                 var temp15 = data.daily[i].temp.day;
                 var wind25 = data.daily[i].wind_speed;
                 var hum5 = data.daily[i].humidity;
                 var bk25 = document.createElement("br");
-                var bk35 = document.createElement("br");
-                var bk45 = document.createElement("br");
-                var bk55 = document.createElement("br");
                 var daySection = document.createElement("div");
+                daySection.className = "card bg-dark text-white";
                 var singleDate5 = (document.createElement(
-                  "h3"
+                  "a"
                 ).innerHTML = `${today5}`);
                 var twhu5 = document.createElement("ul");
+                var imgIcon = document.createElement("img");
+                imgIcon.src = iconLink;
+                imgIcon.className = "sizing text-center";
                 var temp5 = (document.createElement(
-                  "h3"
-                ).innerHTML = `Temp: ${temp15} °F   `);
+                  "a"
+                ).innerHTML = ` Temp: ${temp15} °F, `);
                 var wind5 = (document.createElement(
-                  "h3"
-                ).innerHTML = `Wind: ${wind25} MPH   `);
+                  "a"
+                ).innerHTML = ` Wind: ${wind25} MPH, `);
+                wind5.className = "margin2";
                 var humidity5 = (document.createElement(
-                  "h3"
-                ).innerHTML = `Humidity:  ${hum5}%   `);
-                daySection.append(
-                  bk25,
-                  singleDate5,
-                  twhu5,
-                  temp5,
-     
-                  wind5,
-   
-                  humidity5
-          
-                );
-                fiveDay.append(daySection)
+                  "a"
+                ).innerHTML = ` Humidity:  ${hum5}%`);
+                var align = document.createElement("div");
+                align.append(temp5, wind5, humidity5);
+                daySection.append(singleDate5, imgIcon, align);
+                fiveDay.append(daySection);
               }
             });
           })
@@ -174,10 +174,12 @@ function saveCity() {
   cities123.innerHTML = "";
   var listItems = document.createElement("ul");
   for (var i = 0; i < singleCity.length; i++) {
+    var brk = document.createElement("br");
     var listItem = document.createElement("li");
+    listItem.className= "styling"
     var listItem1 = document.createElement("button");
     listItem1.innerHTML = singleCity[i];
-    listItem.append(listItem1);
+    listItem.append(brk, listItem1);
     listItems.append(listItem);
   }
   cities123.append(listItems);
