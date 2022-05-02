@@ -122,7 +122,8 @@ function apiRender(cityName) {
                 bk5,
                 uvIndex
               );
-
+              var fiveDayHeader = document.createElement("div").innerHTML = "The Next 5 Days";
+              fiveDay.append(fiveDayHeader)
               for (let i = 1; i < 6; i++) {
                 var day5 = String(new Date(data.daily[i].dt * 1000));
                 var today5 = day5.slice(0, 10);
@@ -133,30 +134,32 @@ function apiRender(cityName) {
                 var bk35 = document.createElement("br");
                 var bk45 = document.createElement("br");
                 var bk55 = document.createElement("br");
+                var daySection = document.createElement("div");
                 var singleDate5 = (document.createElement(
                   "h3"
                 ).innerHTML = `${today5}`);
                 var twhu5 = document.createElement("ul");
                 var temp5 = (document.createElement(
                   "h3"
-                ).innerHTML = `Temp: ${temp15} °F`);
+                ).innerHTML = `Temp: ${temp15} °F   `);
                 var wind5 = (document.createElement(
                   "h3"
-                ).innerHTML = `Wind: ${wind25} MPH`);
+                ).innerHTML = `Wind: ${wind25} MPH   `);
                 var humidity5 = (document.createElement(
                   "h3"
-                ).innerHTML = `Humidity:  ${hum5}%`);
-                fiveDay.append(
+                ).innerHTML = `Humidity:  ${hum5}%   `);
+                daySection.append(
                   bk25,
                   singleDate5,
                   twhu5,
                   temp5,
-                  bk35,
+     
                   wind5,
-                  bk45,
-                  humidity5,
-                  bk55
+   
+                  humidity5
+          
                 );
+                fiveDay.append(daySection)
               }
             });
           })
