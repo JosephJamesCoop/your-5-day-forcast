@@ -53,7 +53,7 @@ function apiRender(cityName) {
         var newCity = data[0].name;
         searchedCities = JSON.parse(localStorage.getItem("cities")) || [];
         searchedCities.push(newCity);
-        console.log("newcity", data[0].name)
+        console.log("newcity", data[0].name);
         let citySort = [...new Set(searchedCities)];
         console.log("citysort", citySort);
         localStorage.setItem("cities", JSON.stringify(citySort));
@@ -64,7 +64,7 @@ function apiRender(cityName) {
         if (data[0].state === undefined) {
           var state = "";
         } else {
-        var state = ", " + data[0].state;
+          var state = ", " + data[0].state;
         }
         var weatherApi =
           "https://api.openweathermap.org/data/2.5/onecall?lat=" +
@@ -90,18 +90,19 @@ function apiRender(cityName) {
               var hum = data.current.humidity;
               if (data.current.uvi <= 2) {
                 var uvi = data.current.uvi;
-                uvi.className = "green"
+                uvi.className = "green";
               } else if (data.current.uvi <= 5) {
                 var uvi = data.current.uvi;
-                uvi.className = "yellow"
+                uvi.className = "yellow";
               } else {
                 var uvi = data.current.uvi;
-                uvi.className = "red"
+                uvi.className = "red";
               }
               var uvi = data.current.uvi;
-              var singleDay = (document.createElement(
-                "h2"
-              ).innerHTML = `${name}${state}`);
+              var singleDay = document.createElement(
+                "h4"
+              );
+              singleDay.innerHTML = `${name}${state}`;
               var bk1 = document.createElement("br");
               var bk2 = document.createElement("br");
               var bk3 = document.createElement("br");
@@ -124,20 +125,17 @@ function apiRender(cityName) {
               var humidity = (document.createElement(
                 "p"
               ).innerHTML = `Humidity:  ${hum}% `);
-              var uvIndex = document.createElement(
-                "p"
-              )
+              var uvIndex = document.createElement("p");
               uvIndex.innerHTML = `UV Index: ${uvi}`;
               if (data.current.uvi <= 2) {
-                uvIndex.className = "green"
+                uvIndex.className = "green";
               } else if (data.current.uvi <= 5) {
-                uvIndex.className = "yellow"
+                uvIndex.className = "yellow";
               } else {
-                uvIndex.className = "red"
+                uvIndex.className = "red";
               }
               currentWeather.append(
                 singleDay,
-                bk1,
                 singleDate,
                 bk2,
                 imgIcon1,
