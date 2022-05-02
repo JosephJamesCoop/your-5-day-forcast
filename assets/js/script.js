@@ -26,10 +26,8 @@ function apiRender(cityName) {
   currentWeather.innerHTML = "";
   fiveDay.innerHTML = "";
   if (cityName.altKey === false) {
-    console.log("test1", cityName);
     var citySelection = document.getElementById("cityInputed").value;
     var citySelect = citySelection;
-    console.log("test", citySelect);
     var cityApi =
       "https://api.openweathermap.org/geo/1.0/direct?q=" +
       citySelect +
@@ -53,9 +51,7 @@ function apiRender(cityName) {
         var newCity = data[0].name;
         searchedCities = JSON.parse(localStorage.getItem("cities")) || [];
         searchedCities.push(newCity);
-        console.log("newcity", data[0].name);
         let citySort = [...new Set(searchedCities)];
-        console.log("citysort", citySort);
         localStorage.setItem("cities", JSON.stringify(citySort));
 
         var lat = data[0].lat;
@@ -76,9 +72,6 @@ function apiRender(cityName) {
         fetch(weatherApi)
           .then(function (info) {
             info.json().then(function (data) {
-              console.log("dasdfsdfta", data);
-              console.log("data.lsdfsdfength", data.length);
-              console.log("data.daily[0].day", data.daily);
               var day = String(new Date(data.daily[0].dt * 1000));
               var iconLink1 =
                 "https://openweathermap.org/img/w/" +
@@ -99,9 +92,7 @@ function apiRender(cityName) {
                 uvi.className = "red";
               }
               var uvi = data.current.uvi;
-              var singleDay = document.createElement(
-                "h4"
-              );
+              var singleDay = document.createElement("h4");
               singleDay.innerHTML = `${name}${state}`;
               var bk1 = document.createElement("br");
               var bk2 = document.createElement("br");
@@ -154,7 +145,6 @@ function apiRender(cityName) {
               for (let i = 1; i < 6; i++) {
                 var day5 = String(new Date(data.daily[i].dt * 1000));
                 var today5 = day5.slice(0, 10);
-                console.log("needed info", data.daily[1]);
                 var iconLink =
                   "https://openweathermap.org/img/w/" +
                   data.daily[i].weather[0].icon +
