@@ -61,8 +61,11 @@ function apiRender(cityName) {
         var lat = data[0].lat;
         var lon = data[0].lon;
         var name = data[0].name;
-        var state = data[0].state;
-
+        if (data[0].state === undefined) {
+          var state = "";
+        } else {
+        var state = ", " + data[0].state;
+        }
         var weatherApi =
           "https://api.openweathermap.org/data/2.5/onecall?lat=" +
           lat +
@@ -85,33 +88,53 @@ function apiRender(cityName) {
               var temp1 = data.current.temp;
               var wind2 = data.current.wind_speed;
               var hum = data.current.humidity;
+              if (data.current.uvi <= 2) {
+                var uvi = data.current.uvi;
+                uvi.className = "green"
+              } else if (data.current.uvi <= 5) {
+                var uvi = data.current.uvi;
+                uvi.className = "yellow"
+              } else {
+                var uvi = data.current.uvi;
+                uvi.className = "red"
+              }
               var uvi = data.current.uvi;
               var singleDay = (document.createElement(
                 "h2"
-              ).innerHTML = `${name} , ${state}`);
+              ).innerHTML = `${name}${state}`);
               var bk1 = document.createElement("br");
               var bk2 = document.createElement("br");
-
+              var bk3 = document.createElement("br");
+              var bk4 = document.createElement("br");
+              var bk5 = document.createElement("br");
               var bk6 = document.createElement("br");
               var imgIcon1 = document.createElement("img");
               imgIcon1.src = iconLink1;
               imgIcon1.className = "sizing text-center";
               var singleDate = (document.createElement(
-                "a"
+                "p"
               ).innerHTML = `${today}`);
               var twhu = document.createElement("ul");
               var temp = (document.createElement(
-                "a"
-              ).innerHTML = `Temp: ${temp1} °F, `);
+                "p"
+              ).innerHTML = `Temp: ${temp1} °F `);
               var wind = (document.createElement(
-                "a"
-              ).innerHTML = `Wind: ${wind2} MPH, `);
+                "p"
+              ).innerHTML = `Wind: ${wind2} MPH `);
               var humidity = (document.createElement(
-                "a"
-              ).innerHTML = `Humidity:  ${hum}%, `);
-              var uvIndex = (document.createElement(
-                "a"
-              ).innerHTML = `UV Index: ${uvi}`);
+                "p"
+              ).innerHTML = `Humidity:  ${hum}% `);
+              var uvIndex = document.createElement(
+                "p"
+              )
+              uvIndex.innerHTML = `UV Index: ${uvi}`;
+              if (data.current.uvi <= 2) {
+                uvIndex.className = "green"
+              } else if (data.current.uvi <= 5) {
+                uvIndex.className = "yellow"
+              } else {
+                uvIndex.className = "red"
+              }
               currentWeather.append(
                 singleDay,
                 bk1,
@@ -120,11 +143,11 @@ function apiRender(cityName) {
                 imgIcon1,
                 bk6,
                 temp,
-
+                bk3,
                 wind,
-
+                bk5,
                 humidity,
-
+                bk4,
                 uvIndex,
                 twhu
               );

@@ -42,3 +42,15 @@ main {
   font-size: x-large;
   font-weight: 600;
 }
+
+.red {
+  color: red;
+}
+
+.yellow {
+  color: yellow;
+}
+
+.green {
+  color: green;
+}
